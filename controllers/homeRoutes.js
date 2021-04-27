@@ -40,7 +40,7 @@ router.get('/posts/:id', async (req, res) => {
 
     const post = postData.get({ plain: true });
 
-    res.render('post', {
+    res.render('update', {
       ...post,
       logged_in: req.session.logged_in
     });
@@ -69,8 +69,12 @@ router.get('/add', withAuth, async (req, res) => {
   }
 });
 
+router.get('/dashboard', withAuth, (req, res) => {
+  res.render('dashboard');
+});
+
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+  // If the user is already logged in, redirect the request to home "/"
   if (req.session.logged_in) {
     res.redirect('/');
     return;

@@ -7,9 +7,9 @@
   <div class="col-md-12">
 
     <table class="my-table">
-      <tr>
-        <td class="bg-light my-title-l"><a href="#">{{post.title}}</a></td>
-        <td class="bg-light my-title-r">Created by: {{post.user.name}}</td> 
+      <tr class="my-table-row">
+        <td class="bg-light my-title-l"><a href="#">{{post.id}} {{post.title}}</a></td>
+        <td class="bg-light my-title-r">Created by: {{post.user.name}} on {{format_date date_created}}</td> 
       </tr>
     </table>
 

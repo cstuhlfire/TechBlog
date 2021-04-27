@@ -18,6 +18,25 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    console.log("\n\nPut\n\n");
+    
+    const updatePost = await Post.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    console.log("\n\nPut\n\n");
+
+    res.redirect('/');
+    //res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({
