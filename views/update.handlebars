@@ -2,25 +2,24 @@
   <h3>Update a Blog Post</h3>
 </div>
 
-<div class="text-left">
-  <h3>{{title}}</h3>
-  <p>{{post_text}}</p>
-  <p>Created by: {{post.user.name}} on {{format_date date_created}}</p>
-  
-  <p>
-    <a href="/add" class="btn btn-light">Add New</a>
-    <button class="btn btn-light">Update</button>
-    <button class="btn btn-light">Delete</button>
-  </p>
-</div>
 
-<div class="row mt-4">
+  <div class="text-left">
+    <h3>{{title}}</h3>
+    <p>{{post_text}}</p>
+    <p>Created by: {{user.name}} on {{format_date date_created}}</p>
+    
+    <p>
+      <button class="btn btn-light">Delete</button>
+    </p>
+  </div>
+
+ <div class="row mt-4">
   <div class="col-md-6">
 
     <form class="form new-post-form">
       <div class="form-group">
         <label for="post-name">Post title:</label>
-        <input class="form-input" type="text" id="post-name" name="post-name" data-id={{id}} value={{title}}>
+        <input class="form-input" type="text" id="post-name" name="post-name" value="{{title}}" />
       </div>
  
       <div class="form-group">
@@ -28,11 +27,10 @@
         <textarea class="form-input" id="post-desc" name="post-desc">{{post_text}}</textarea>
       </div>
       <div class="form-group">
-        <button class="btn btn-light update-post">Update</button>
+        <button type="submit" class="btn btn-light">Update</button>
       </div>
     </form>
   </div>
-
 </div>
 
 <script src="/js/update.js"></script>

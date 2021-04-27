@@ -75,6 +75,29 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+// 
+router.get('/update/:id', async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          //attributes: ['name'],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+
+    res.render('update', {
+      ...post
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to home "/"
   if (req.session.logged_in) {

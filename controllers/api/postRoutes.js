@@ -20,16 +20,11 @@ router.post('/', withAuth, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
+    const postData = await Post.findByPk(req.params.id, {});
+
 
     const post = postData.get({ plain: true });
+    console.log(post);
 
     res.render('update', {
       ...post,
