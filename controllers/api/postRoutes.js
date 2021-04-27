@@ -44,8 +44,8 @@ router.put('/:id', withAuth, async (req, res) => {
       },
     });
 
-    res.redirect('/');
-    //res.status(200).json(newPost);
+     //res.redirect('/');
+    res.status(200).json(updatePost);
   } catch (err) {
     res.status(400).json(err);
   }
