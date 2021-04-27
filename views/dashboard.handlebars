@@ -4,9 +4,11 @@
 
 <div class="text-left">
   <p>
-    <a class="btn btn-light" href="/add" >Add New</a>
-    <button class="btn btn-light">Update</button>
-    <button class="btn btn-light">Delete</button>
+    <span><a class="btn btn-light" href="/add" >Add New</a></span>
+    <br>
+    <span>Click a blog header to update or delete a post.</span>
+    <!-- <button class="btn btn-light">Update</button>
+    <button class="btn btn-light">Delete</button> -->
   </p>
 </div>
 
@@ -17,7 +19,7 @@
 
     <table class="my-table">
       <tr class="my-table-row">
-        <td class="bg-light my-title-l"><a href="/posts/{{post.id}}">{{post.id}} {{post.title}}</a></td>
+        <td class="bg-light my-title-l"><a class="my-href" href="/posts/{{post.id}}">{{post.title}}</a></td>
         <td class="bg-light my-title-r">Created by: {{post.user.name}} on {{format_date date_created}}</td> 
       </tr>
     </table>

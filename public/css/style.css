@@ -20,7 +20,11 @@ header, .project:not(:last-child) {
 
 .my-title-l {
   color: black;
-  font-size: larger;
+  font-size: x-large;
+}
+
+.my-href {
+  color: black;
 }
 
 .my-title-r {
@@ -31,7 +35,3 @@ header, .project:not(:last-child) {
   border-bottom: solid lightgrey;
 }
 
-.my-post-text :hover {
-  background-color: lightsteelblue;
-  color: linen;
-}
