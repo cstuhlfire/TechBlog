@@ -27,28 +27,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/posts/:id', async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    const post = postData.get({ plain: true });
-
-    res.render('update', {
-      ...post,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // Use withAuth middleware to prevent access to route
 router.get('/add', withAuth, async (req, res) => {
   try {
@@ -69,8 +47,38 @@ router.get('/add', withAuth, async (req, res) => {
   }
 });
 
-router.get('/dashboard', withAuth, (req, res) => {
-  res.render('dashboard');
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    // Get all posts and JOIN with user data
+    const dashboardData = await Post.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const dashes = dashboardData.map((dash) => dash.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('dashboard', { 
+      dashes, 
+      logged_in: req.session.logged_in 
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/update/:id', (req, res) => {
+
+  res.render('update');
 });
 
 router.get('/login', (req, res) => {

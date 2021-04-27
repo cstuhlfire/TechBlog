@@ -8,7 +8,7 @@ const updateHandler = async (event) => {
     let title = titleEl.value.trim();
     let post_text = document.querySelector('#post-desc').value.trim();
   
-    alert("Event Handler: "+ title);
+    alert("Event Handler: "+ post_id);
     if (title && post_text) {
       let response = await fetch(`/api/posts/${post_id}`, {
         method: 'PUT',
