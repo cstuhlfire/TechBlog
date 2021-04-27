@@ -50,7 +50,7 @@ router.get('/add', withAuth, async (req, res) => {
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Get all posts and JOIN with user data
-    const dashboardData = await Post.findAll({
+    const posttData = await Post.findAll({
       where: {
         user_id: req.session.user_id,
       },
@@ -63,22 +63,16 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const dashes = dashboardData.map((dash) => dash.get({ plain: true }));
+    const posts = posttData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('dashboard', { 
-      dashes, 
+      posts, 
       logged_in: req.session.logged_in 
     });
-
   } catch (err) {
     res.status(500).json(err);
   }
-});
-
-router.get('/update/:id', (req, res) => {
-
-  res.render('update');
 });
 
 router.get('/login', (req, res) => {

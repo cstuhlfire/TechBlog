@@ -30,3 +30,8 @@ header, .project:not(:last-child) {
 .my-text {
   border-bottom: solid lightgrey;
 }
+
+.my-post-text :hover {
+  background-color: lightsteelblue;
+  color: linen;
+}
