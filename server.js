@@ -27,7 +27,7 @@ const sess = {
 
 app.use(session(sess));
 
-// Inform Express.js on which template engine to use
+// Inform Express.js to use handlebars
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
