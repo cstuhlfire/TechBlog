@@ -21,9 +21,9 @@ Run npm i from the command line. Install the database and populate it with seed 
 Run the application by starting the server with node server.js from the command  line. The application can then be accessed on the local machine in localhost:3001. The application is deployed to Heroku and can be found at https://sleepy-tech-blog.herokuapp.com/.
 ```
 ## Screenshots
-![Screenshot](./assets/screenshot.PNG)
+![Screenshot](./screenshot.PNG)
 
-![!Screenshot](./assets/screenshot2.PNG)
+![Screenshot](./screenshot2.PNG)
 
 ## Contributing
 ```
