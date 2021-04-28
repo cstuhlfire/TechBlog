@@ -121,7 +121,7 @@ router.get('/comments/:id', withAuth, async (req, res) => {
   }
 });
 
-router.get('/screen_comments/:id', withAuth, async (req, res) => {
+router.get('/screen_comments/:id', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
     const commentData = await Comments.findAll({
@@ -137,11 +137,15 @@ router.get('/screen_comments/:id', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const comments = commentData.map((comment) => comment.get({ plain: true }));
+    
+    if (comments === undefined || comments === null) {
+      comments = [{"id": post_id}];
+    }
 
     // Pass serialized data and session flag into template
-    res.render('comments', { 
-      comments, 
-    });
+   // res.json(comments);
+     res.render('comments', { comments, });
+     
   } catch (err) {
     res.status(500).json(err);
   }
