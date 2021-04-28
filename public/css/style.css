@@ -23,12 +23,22 @@ header, .project:not(:last-child) {
   font-size: x-large;
 }
 
+.my-title-lcomment {
+  color: black;
+  font-size: medium;
+}
+
 .my-href {
   color: black;
 }
 
 .my-title-r {
   text-align: right;
+}
+
+.my-title-rcomment {
+  text-align: right;
+  font-size: medium;
 }
 
 .my-text {

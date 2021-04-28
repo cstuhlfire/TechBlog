@@ -3,13 +3,28 @@
 </div>
 
 <div class="text-left">
-  <h3>{{title}}</h3>
-  <p>{{post_text}}</p>
-  <p>Created by: {{user.name}} on {{format_date date_created}}</p>
-</div>
-
-<div class="text-left">
   <p>
-    <span><a class="btn btn-light" href="/addcomment/{{id}}" >Add Comment</a></span>
+    <span><a class="btn btn-light" href="/addcomment/{{comments.0.id}}" >Add Comment</a></span>
   </p>
 </div>
+
+<!-- Loop over each object in the posts array -->
+{{#each comments as |comment| }}
+<div class="row mb-4 post">
+  <div class="col-md-12">
+
+    <table class="my-table">
+      <tr class="my-table-row">
+        <td class="bg-light my-title-lcomment">Commenter: {{comment.user.name}}</td> 
+        <td class="bg-light my-title-rcomment">{{format_date comment.date_created}}</td> 
+      </tr>
+    </table>
+
+  </div>
+  <div class="col-md-12 my-text">
+    <p>
+      {{comment.comment}}
+    </p>
+  </div>
+</div>
+{{/each}}

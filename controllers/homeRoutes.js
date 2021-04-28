@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
-    const posttData = await Post.findAll({
+    const postData = await Post.findAll({
       include: [
         {
           model: User,
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const posts = posttData.map((post) => post.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -50,7 +50,7 @@ router.get('/add', withAuth, async (req, res) => {
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Get all posts and JOIN with user data
-    const posttData = await Post.findAll({
+    const postData = await Post.findAll({
       where: {
         user_id: req.session.user_id,
       },
@@ -63,7 +63,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const posts = posttData.map((post) => post.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('dashboard', { 
@@ -105,6 +105,7 @@ router.get('/comments/:id', withAuth, async (req, res) => {
       include: [
         {
           model: User,
+          //model: Comments
           //attributes: ['name'],
         },
       ],
@@ -120,19 +121,38 @@ router.get('/comments/:id', withAuth, async (req, res) => {
   }
 });
 
+router.get('/screen_comments/:id', withAuth, async (req, res) => {
+  try {
+    // Get all posts and JOIN with user data
+    const commentData = await Comments.findAll({
+      where: {
+        post_id: req.params.id,
+      },
+      include: [
+        {
+          model: User
+        },
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('comments', { 
+      comments, 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 // Use withAuth middleware to prevent access to route
 router.get('/addcomment/:id', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          //attributes: ['name'],
-        },
-      ],
-    });
+   
+    const postData = await Post.findByPk(req.params.id, {});
 
     const post = postData.get({ plain: true });
 
@@ -142,7 +162,9 @@ router.get('/addcomment/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+
 });
+
 
 
 router.get('/login', (req, res) => {

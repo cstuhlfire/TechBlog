@@ -15,9 +15,10 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: process.env.SECRET,
+  //secret: process.env.SECRET,
+  secret: 'Super secret secret',
   // logout after 5 minutes
-  cookie: {maxAge: 300000},
+  cookie: {maxAge: 900000},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
