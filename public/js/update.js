@@ -2,7 +2,6 @@ const newFormHandler = async (event) => {
   event.preventDefault();
 
   const id = event.target.getAttribute('data-id');
-  console.log(id);
 
   const title = document.querySelector('#post-name').value.trim();
   const text = document.querySelector('#post-desc').value.trim();

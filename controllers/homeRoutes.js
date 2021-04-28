@@ -98,7 +98,7 @@ router.get('/update/:id', async (req, res) => {
   }
 });
 
-router.get('/comments/:id', async (req, res) => {
+router.get('/comments/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const postData = await Post.findByPk(req.params.id, {
@@ -119,6 +119,31 @@ router.get('/comments/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+// Use withAuth middleware to prevent access to route
+router.get('/addcomment/:id', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          //attributes: ['name'],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+
+    res.render('add_comment', {
+      ...post
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to home "/"
