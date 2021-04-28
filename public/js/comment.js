@@ -4,8 +4,8 @@ const newFormHandler = async (event) => {
     const post_id = event.target.getAttribute('data-postid');
     const user_id = event.target.getAttribute('data-nameid');
 
-    console.log(`\n\n${post_id}\n\n`);
-    console.log(`\n\n${user_id}\n\n`);
+    console.log(`\n\nPost: ${post_id}\n\n`);
+    console.log(`\n\nUser: ${user_id}\n\n`);
 
      const comment = document.querySelector('#post-desc').value.trim();
   
@@ -30,6 +30,6 @@ const newFormHandler = async (event) => {
   
   
   
-  document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+  document.querySelector('.new-post-form').addEventListener('click', newFormHandler);
   
   
