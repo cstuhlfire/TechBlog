@@ -10,9 +10,9 @@ User.hasMany(Post, {
   foreignKey: 'user_id',
 });
 
-Post.hasMany(Comments, {
-  foreignKey: 'post_id',
-});
+// Post.hasMany(Comments, {
+//   foreignKey: 'post_id',
+// });
 
 // Comments.belongsTo(Post, {
 //   foreignKey: 'post_id',
