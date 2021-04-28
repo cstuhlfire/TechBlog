@@ -16,10 +16,11 @@ To install the necessary dependencies run:
 Run npm i from the command line. Install the database and populate it with seed data if desired.
 ## Usage
 Run the application by starting the server with node server.js from the command  line. The application can then be accessed on the local machine in localhost:3001. The application is deployed to Heroku and can be found at https://sleepy-tech-blog.herokuapp.com/.
-## Screenshots
-![Screenshot](./Screenshot.png)
 
-![Screenshot](./Screenshot2.png)
+## Screenshots
+![Screenshot](./Screenshot.PNG)
+
+![Screenshot](./Screenshot2.PNG)
 
 ## Contributing
 Coleen Stuhlfire
