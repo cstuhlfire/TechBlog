@@ -98,6 +98,7 @@ router.get('/update/:id', withAuth, async (req, res) => {
   }
 });
 
+
 router.get('/comments/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -120,6 +121,7 @@ router.get('/comments/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 router.get('/screen_comments/:id', withAuth, async (req, res) => {
   try {
