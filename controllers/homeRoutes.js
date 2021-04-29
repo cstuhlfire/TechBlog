@@ -76,7 +76,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 // 
-router.get('/update/:id', async (req, res) => {
+router.get('/update/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const postData = await Post.findByPk(req.params.id, {
@@ -121,7 +121,7 @@ router.get('/comments/:id', withAuth, async (req, res) => {
   }
 });
 
-router.get('/screen_comments/:id', async (req, res) => {
+router.get('/screen_comments/:id', withAuth, async (req, res) => {
   try {
 
      // Get all posts and JOIN with user data
