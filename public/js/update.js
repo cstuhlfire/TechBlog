@@ -1,5 +1,6 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
+  event.stopPropagation();
 
   const id = event.target.getAttribute('data-id');
 
